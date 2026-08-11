@@ -1,0 +1,467 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Customer Reviews | SHREE SAHJANAND DABELI</title>
+    
+    <!-- Google Fonts import for Merriweather & Open Sans -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@400;700;900&family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --bg-color: #fdfaf6;
+            --text-color: #333;
+            --card-bg: white;
+            --card-shadow: rgba(0,0,0,0.08);
+            --header-text: #2d3436;
+            --secondary-text: #636e72;
+            --footer-bg: #2d3436;
+            --main-blue: #0047AB;
+            --primary-accent: #ff6b6b;
+            --secondary-accent: #ff9f43;
+        }
+
+        [data-theme="dark"] {
+            --bg-color: #121212;
+            --text-color: #e0e0e0;
+            --card-bg: #1e1e1e;
+            --card-shadow: rgba(0,0,0,0.5);
+            --header-text: #ffffff;
+            --secondary-text: #b0b0b0;
+            --footer-bg: #0a0a0a;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Open Sans', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            line-height: 1.6;
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Merriweather', serif;
+        }
+
+        header {
+            background-color: var(--main-blue);
+            color: white;
+            padding: 100px 20px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .theme-toggle {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: var(--secondary-accent);
+            border: none;
+            color: white;
+            padding: 8px 16px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-weight: bold;
+            font-family: 'Open Sans', sans-serif;
+            z-index: 10;
+            transition: 0.3s;
+        }
+
+        .theme-toggle:hover {
+            background: #e67e22;
+        }
+
+        header h1 {
+            font-size: 3rem;
+            color: white;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            position: relative;
+            z-index: 2;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .background-logo {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            opacity: 0.15;
+            max-width: 300px;
+            width: 100%;
+            height: auto;
+            z-index: 1;
+        }
+
+        header p {
+            font-size: 1.2rem;
+            margin-bottom: 30px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .btn-container {
+            display: flex;
+            justify-content: center;
+            position: relative;
+            z-index: 2;
+        }
+
+        .btn {
+            padding: 12px 25px;
+            text-decoration: none;
+            font-weight: bold;
+            border-radius: 25px;
+            transition: 0.3s;
+            border: none;
+            cursor: pointer;
+            font-family: 'Open Sans', sans-serif;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .home-btn-header { background-color: white; color: var(--main-blue); border: 2px solid white; }
+        .home-btn-header:hover { background-color: rgba(255, 255, 255, 0.85); transform: translateY(-2px); }
+
+        .container {
+            max-width: 1100px;
+            margin: 60px auto;
+            padding: 0 20px;
+        }
+
+        h2.section-header {
+            text-align: center;
+            color: var(--header-text);
+            margin-bottom: 40px;
+            font-size: 2.5rem;
+            position: relative;
+        }
+
+        h2.section-header::after {
+            content: '';
+            width: 80px;
+            height: 4px;
+            background-color: var(--secondary-accent);
+            display: block;
+            margin: 10px auto 0;
+            border-radius: 2px;
+        }
+
+        /* Review Section Styles */
+        .review-section {
+            background: var(--card-bg);
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 6px 18px var(--card-shadow);
+            margin-bottom: 60px;
+        }
+
+        /* Animated Star Rating System */
+        .rating-box {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+
+        .rating-select {
+            display: inline-flex;
+            flex-direction: row-reverse;
+            gap: 8px;
+            font-size: 2.5rem;
+        }
+
+        .star {
+            color: #dcdde1;
+            cursor: pointer;
+            transition: transform 0.2s ease, color 0.2s ease;
+            user-select: none;
+        }
+
+        .star:hover,
+        .star:hover ~ .star,
+        .star.selected,
+        .star.selected ~ .star {
+            color: #f1c40f;
+            text-shadow: 0 0 10px rgba(241, 196, 15, 0.5);
+        }
+
+        .star:hover {
+            transform: scale(1.25);
+        }
+
+        .rating-label-text {
+            font-weight: bold;
+            color: var(--secondary-accent);
+            font-size: 1.1rem;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: bold;
+            color: var(--header-text);
+        }
+
+        .form-group input, .form-group textarea {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-family: 'Open Sans', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+        }
+
+        .submit-review-btn {
+            background-color: var(--main-blue);
+            color: white;
+            padding: 12px 30px;
+            border: none;
+            border-radius: 25px;
+            font-weight: bold;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .submit-review-btn:hover {
+            background-color: #003380;
+            box-shadow: 0 4px 12px rgba(0, 71, 171, 0.3);
+        }
+
+        .reviews-list {
+            margin-top: 40px;
+        }
+
+        .review-card {
+            border-bottom: 1px solid var(--secondary-text);
+            padding: 20px 0;
+        }
+
+        .review-card:last-child {
+            border-bottom: none;
+        }
+
+        .review-author {
+            font-weight: bold;
+            font-size: 1.1rem;
+            color: var(--header-text);
+        }
+
+        .review-stars {
+            color: #f1c40f;
+            margin: 5px 0;
+            font-size: 1.2rem;
+        }
+
+        /* Timings & Contact Section */
+        .info-section {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 30px;
+            margin-top: 60px;
+            background: var(--card-bg);
+            padding: 50px;
+            border-radius: 12px;
+            box-shadow: 0 6px 18px var(--card-shadow);
+        }
+
+        .info-box {
+            flex: 1;
+            min-width: 280px;
+        }
+
+        .info-box h3 {
+            color: var(--secondary-accent);
+            margin-bottom: 20px;
+        }
+
+        .link-text {
+            display: inline-block;
+            margin-top: 10px;
+            color: var(--primary-accent);
+            font-weight: bold;
+            text-decoration: none;
+        }
+        .link-text:hover { text-decoration: underline; }
+
+        footer {
+            text-align: center;
+            background-color: var(--footer-bg);
+            color: white;
+            padding: 40px 20px;
+            margin-top: 60px;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- HEADER: Only 1 Button (Back to Home) -->
+    <header>
+        <button class="theme-toggle" onclick="toggleTheme()">🌙 Dark Mode</button>
+
+        <img src="logo.jpg" alt="Shree Sahjanand Dabeli Logo" class="background-logo">
+
+        <h1>SHREE SAHJANAND DABELI</h1>
+        <p>Authentic Street Snacks in Jagdalpur, Chhattisgarh</p>
+        <div class="btn-container">
+            <a href="index.html" class="btn home-btn-header">🏠 Back to Home</a>
+        </div>
+    </header>
+
+    <div class="container">
+        
+        <!-- REVIEW SECTION -->
+        <section class="review-section">
+            <h2 class="section-header">Leave a Review</h2>
+            
+            <form id="reviewForm" onsubmit="addReview(event)">
+                <div class="form-group">
+                    <label>Your Rating</label>
+                    <div class="rating-box">
+                        <div class="rating-select" id="starRating">
+                            <span class="star" data-value="5" onclick="setRating(5)">★</span>
+                            <span class="star" data-value="4" onclick="setRating(4)">★</span>
+                            <span class="star" data-value="3" onclick="setRating(3)">★</span>
+                            <span class="star" data-value="2" onclick="setRating(2)">★</span>
+                            <span class="star" data-value="1" onclick="setRating(1)">★</span>
+                        </div>
+                        <span class="rating-label-text" id="ratingText">5 Stars - Excellent!</span>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="reviewerName">Your Name</label>
+                    <input type="text" id="reviewerName" placeholder="Enter your name" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="reviewText">Your Experience</label>
+                    <textarea id="reviewText" rows="4" placeholder="Tell us what you loved about our Dabeli!" required></textarea>
+                </div>
+
+                <button type="submit" class="submit-review-btn">Submit Review</button>
+            </form>
+
+            <div class="reviews-list">
+                <h3 style="margin-bottom: 20px; color: var(--header-text);">Customer Feedback</h3>
+                
+                <div id="reviewsContainer">
+                    <div class="review-card">
+                        <div class="review-author">Aman Sharma</div>
+                        <div class="review-stars">★★★★★</div>
+                        <p>Best Dabeli in Jagdalpur! Pure Gujarati authentic taste. The butter dabeli is a must-try!</p>
+                    </div>
+
+                    <div class="review-card">
+                        <div class="review-author">Priya Patel</div>
+                        <div class="review-stars">★★★★★</div>
+                        <p>Loved the Dahi Puri and Kadak! Very polite family running the stall.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- MAP & CONTACT SECTION -->
+        <section class="info-section">
+            <div class="info-box">
+                <h3>📍 Find Us Here</h3>
+                <p><strong>Address:</strong> Shop No. 3, In front of Punjab National Bank, Chowparty, Jagdalpur, Chhattisgarh 494001</p>
+                <a href="https://maps.app.goo.gl/K3MkpkdWfyFNEtxr6" target="_blank" class="link-text">🗺️ Open in Google Maps ➔</a>
+            </div>
+            <div class="info-box">
+                <h3>⏰ Timings & Contact</h3>
+                <p><strong>Everyday:</strong> 3:00 PM – 11:00 PM</p>
+                <p style="margin-top: 10px;"><strong>Phone / WhatsApp:</strong> 8770409138</p>
+                <a href="tel:+918770409138" class="link-text">📞 Call Now</a>
+            </div>
+        </section>
+
+    </div>
+
+    <footer>
+        <p>&copy; 2026 Shree Sahjanand Dabeli. All rights reserved.</p>
+        <p style="margin-top: 10px;"><a href="index.html" style="color:#ff9f43; text-decoration:none;">Back to Home Page</a></p>
+    </footer>
+
+    <script>
+        // Paste your Google Web App URL here if you set it up later
+        const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbybEaV37q-6mJOx3yUzrCpibJ8SYAK8weR0n7Yy7aS5fGUqsiqUahlmDZCK0wdJ8N4T/exec";
+
+        let currentRating = 5;
+        const ratingLabels = {
+            5: "5 Stars - Excellent!",
+            4: "4 Stars - Very Good!",
+            3: "3 Stars - Good",
+            2: "2 Stars - Fair",
+            1: "1 Star - Poor"
+        };
+
+        function toggleTheme() {
+            const currentTheme = document.documentElement.getAttribute('data-theme');
+            const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+            document.documentElement.setAttribute('data-theme', newTheme);
+            
+            const btn = document.querySelector('.theme-toggle');
+            btn.textContent = newTheme === 'dark' ? '☀️ Light Mode' : '🌙 Dark Mode';
+        }
+
+        function setRating(rating) {
+            currentRating = rating;
+            document.getElementById('ratingText').textContent = ratingLabels[rating];
+
+            const stars = document.querySelectorAll('#starRating .star');
+            stars.forEach(star => {
+                const val = parseInt(star.getAttribute('data-value'));
+                if (val <= rating) {
+                    star.classList.add('selected');
+                } else {
+                    star.classList.remove('selected');
+                }
+            });
+        }
+
+        function addReview(event) {
+            event.preventDefault();
+            const name = document.getElementById('reviewerName').value;
+            const text = document.getElementById('reviewText').value;
+            const stars = '★'.repeat(currentRating) + '☆'.repeat(5 - currentRating);
+
+            const container = document.getElementById('reviewsContainer');
+            const newReview = document.createElement('div');
+            newReview.className = 'review-card';
+            newReview.innerHTML = `
+                <div class="review-author">${name}</div>
+                <div class="review-stars">${stars}</div>
+                <p>${text}</p>
+            `;
+
+            container.prepend(newReview);
+            document.getElementById('reviewForm').reset();
+            setRating(5);
+            alert('Thank you for your review!');
+        }
+
+        // Initialize default view
+        setRating(5);
+    </script>
+</body>
+</html>

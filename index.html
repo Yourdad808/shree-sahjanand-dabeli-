@@ -1,0 +1,698 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SHREE SAHJANAND DABELI | The Real Taste of Kutch</title>
+    
+    <!-- Google Fonts import for Merriweather & Open Sans -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@400;700;900&family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --bg-color: #fdfaf6;
+            --text-color: #333;
+            --card-bg: white;
+            --card-shadow: rgba(0,0,0,0.08);
+            --header-text: #2d3436;
+            --secondary-text: #636e72;
+            --footer-bg: #2d3436;
+            --main-blue: #0047AB;
+            --primary-accent: #ff6b6b;
+            --secondary-accent: #ff9f43;
+        }
+
+        [data-theme="dark"] {
+            --bg-color: #121212;
+            --text-color: #e0e0e0;
+            --card-bg: #1e1e1e;
+            --card-shadow: rgba(0,0,0,0.5);
+            --header-text: #ffffff;
+            --secondary-text: #b0b0b0;
+            --footer-bg: #0a0a0a;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Open Sans', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            line-height: 1.6;
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Merriweather', serif;
+        }
+
+        header {
+            background-color: var(--main-blue);
+            color: white;
+            padding: 100px 20px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .theme-toggle {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: var(--secondary-accent);
+            border: none;
+            color: white;
+            padding: 8px 16px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-weight: bold;
+            font-family: 'Open Sans', sans-serif;
+            z-index: 10;
+            transition: 0.3s;
+        }
+
+        .theme-toggle:hover {
+            background: #e67e22;
+        }
+
+        header h1 {
+            font-size: 3rem;
+            color: white;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            position: relative;
+            z-index: 2;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .background-logo {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            opacity: 0.15;
+            max-width: 300px;
+            width: 100%;
+            height: auto;
+            z-index: 1;
+        }
+
+        header p {
+            font-size: 1.2rem;
+            margin-bottom: 30px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .btn-container {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            flex-wrap: wrap;
+            position: relative;
+            z-index: 2;
+        }
+
+        .btn {
+            padding: 12px 25px;
+            text-decoration: none;
+            font-weight: bold;
+            border-radius: 25px;
+            transition: 0.3s;
+            border: none;
+            cursor: pointer;
+            font-family: 'Open Sans', sans-serif;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .cta-btn { background-color: var(--primary-accent); color: white; }
+        .cta-btn:hover { background-color: #ee5253; }
+        
+        .whatsapp-btn { background-color: #25D366; color: white; }
+        .whatsapp-btn:hover { background-color: #1eb954; }
+
+        .review-btn-header { background-color: white; color: var(--main-blue); border: 2px solid white; }
+        .review-btn-header:hover { background-color: rgba(255, 255, 255, 0.8); }
+
+        .instagram-btn { background-color: #E1306C; color: white; }
+        .instagram-btn:hover { background-color: #c13584; }
+        .icon-svg { width: 20px; height: 20px; }
+
+        .container {
+            max-width: 1100px;
+            margin: 0 auto 60px;
+            padding: 0 20px;
+        }
+
+        section {
+            margin-bottom: 80px;
+        }
+
+        h2.section-header {
+            text-align: center;
+            color: var(--header-text);
+            margin-bottom: 50px;
+            font-size: 2.5rem;
+            position: relative;
+        }
+
+        h2.section-header::after {
+            content: '';
+            width: 80px;
+            height: 4px;
+            background-color: var(--secondary-accent);
+            display: block;
+            margin: 10px auto 0;
+            border-radius: 2px;
+        }
+
+        /* About Section */
+        .about-section {
+            position: relative;
+            background-image: url('about-family.jpg');
+            background-size: cover;
+            background-position: center;
+            border-radius: 12px;
+            overflow: hidden;
+            color: white;
+            padding: 80px 40px;
+            text-align: center;
+            box-shadow: 0 6px 18px var(--card-shadow);
+        }
+
+        .about-overlay {
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background-color: rgba(0, 0, 0, 0.6);
+            z-index: 1;
+        }
+
+        .about-content {
+            position: relative;
+            z-index: 2;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .about-content h2 {
+            color: white;
+            font-size: 2.5rem;
+            margin-bottom: 30px;
+        }
+
+        .about-content h2::after { background-color: white; }
+
+        /* Menu Section */
+        .menu-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 30px;
+        }
+
+        .menu-card {
+            background: var(--card-bg);
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 6px 18px var(--card-shadow);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .menu-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px var(--card-shadow);
+        }
+
+        .menu-card img {
+            width: 100%;
+            height: 220px;
+            object-fit: cover;
+        }
+
+        .menu-info {
+            padding: 25px;
+        }
+
+        .menu-info h3 {
+            display: flex;
+            justify-content: space-between;
+            color: var(--header-text);
+            font-size: 1.4rem;
+            margin-bottom: 10px;
+        }
+
+        .price {
+            color: var(--primary-accent);
+            font-weight: bold;
+            font-family: 'Open Sans', sans-serif;
+        }
+
+        .menu-info p {
+            color: var(--secondary-text);
+            font-size: 1rem;
+        }
+
+/* Brand Section Side-by-Side Layout */
+.brand-section {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    background-color: var(--card-bg);
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 6px 18px var(--card-shadow);
+    margin-top: 80px;
+}
+
+.brand-image-wrapper {
+    flex: 1;
+    min-width: 300px;
+}
+
+.brand-image-wrapper img {
+    width: 100%;
+    height: 100%;
+    max-height: 400px;
+    object-fit: cover;
+    display: block;
+}
+
+.brand-text {
+    flex: 1;
+    min-width: 300px;
+    padding: 40px;
+}
+
+.brand-text h2 {
+    text-align: left;
+    color: var(--header-text);
+    margin-bottom: 25px;
+    font-size: 2.2rem;
+}
+
+.brand-text h2::after {
+    margin: 10px 0 0 0;
+}
+
+.brand-text p {
+    color: var(--text-color);
+    font-size: 1.05rem;
+    line-height: 1.8;
+}
+
+        /* Social Links Container */
+        .social-link-container {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+            margin: 60px 0;
+        }
+
+        /* FAQ Section with Toggle */
+        .faq-section {
+            margin-top: 80px;
+        }
+
+        .faq-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+        }
+
+        .faq-item {
+            background-color: var(--card-bg);
+            padding: 25px;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px var(--card-shadow);
+        }
+
+        .faq-item.hidden {
+            display: none;
+        }
+
+        .faq-item h4 {
+            color: var(--main-blue);
+            margin-bottom: 10px;
+            font-size: 1.1rem;
+        }
+
+        .faq-toggle-container {
+            text-align: center;
+            margin-top: 30px;
+        }
+
+        .view-all-btn {
+            background-color: var(--main-blue);
+            color: white;
+            padding: 10px 30px;
+            border-radius: 20px;
+            border: none;
+            cursor: pointer;
+            font-weight: bold;
+            font-family: 'Open Sans', sans-serif;
+            transition: 0.3s;
+        }
+
+        .view-all-btn:hover {
+            background-color: #003380;
+        }
+
+        /* Timings & Contact */
+        .info-section {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 30px;
+            margin-top: 80px;
+            background: var(--card-bg);
+            padding: 50px;
+            border-radius: 12px;
+            box-shadow: 0 6px 18px var(--card-shadow);
+        }
+
+        .info-box {
+            flex: 1;
+            min-width: 280px;
+        }
+
+        .info-box h3 {
+            color: var(--secondary-accent);
+            margin-bottom: 20px;
+        }
+
+        .link-text {
+            display: inline-block;
+            margin-top: 10px;
+            color: var(--primary-accent);
+            font-weight: bold;
+            text-decoration: none;
+        }
+        .link-text:hover { text-decoration: underline; }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            background-color: var(--footer-bg);
+            color: white;
+            padding: 40px 20px;
+            margin-top: 60px;
+        }
+/* About Section Side-by-Side Layout */
+.about-section {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    background-color: var(--card-bg);
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 6px 18px var(--card-shadow);
+    margin-top: 40px;
+}
+
+.about-image-wrapper {
+    flex: 1;
+    min-width: 300px;
+}
+
+.about-image-wrapper img {
+    width: 100%;
+    height: 100%;
+    max-height: 400px;
+    object-fit: cover;
+    display: block;
+}
+
+.about-content {
+    flex: 1;
+    min-width: 300px;
+    padding: 40px;
+}
+
+.about-content h2 {
+    text-align: left;
+    color: var(--header-text);
+    margin-bottom: 25px;
+    font-size: 2.2rem;
+}
+
+.about-content h2::after {
+    margin: 10px 0 0 0;
+}
+
+.about-content p {
+    color: var(--text-color);
+    font-size: 1.05rem;
+    line-height: 1.8;
+}
+	
+    </style>
+</head>
+<body>
+
+    <header>
+        <button class="theme-toggle" onclick="toggleTheme()">🌙 Dark Mode</button>
+
+        <img src="file_0000000008bc82119b98b2c8a9fdde4a.png" alt="Shree Sahjanand Dabeli Logo" class="background-logo">
+
+        <h1>SHREE SAHJANAND DABELI</h1>
+        <p>Authentic Street Snacks in Jagdalpur, Chhattisgarh</p>
+        <div class="btn-container">
+            <a href="#menu" class="btn cta-btn">Explore Menu</a>
+            <a href="https://wa.me/918770409138?text=Hi,%20I%20would%20like%20to%20place%20an%20order!" class="btn whatsapp-btn" target="_blank">💬 Order via WhatsApp</a>
+            <a href="review.html" class="btn review-btn-header">⭐ Leave a Review</a>
+        </div>
+    </header>
+
+    <div class="container">
+        
+  <!-- About Section with HTML Image Tag -->
+<section id="about" class="about-section">
+    <div class="about-image-wrapper">
+        <img src="file_00000000e4cc82079427add2cd2e73c6.png" alt="Mr. Rakesh Bhanushali and Family">
+    </div>
+    <div class="about-content">
+        <h2 class="section-header">About Us</h2>
+        <p>Shree Sahjanand Dabeli is a Gujarati food stall located at Chowpatty, right in front of Punjab National Bank. Started by Mr. Rakesh Bhanushali and his family, we bring you the authentic taste of Gujarat through our delicious and freshly prepared Dabeli. With traditional flavors, quality ingredients, and a passion for serving great food, we aim to give every customer a true taste of Gujarat—authentic, flavorful, and made with love.</p>
+    </div>
+</section>
+
+        <!-- Menu Section -->
+        <section id="menu">
+            <h2 class="section-header">Our Specialties</h2>
+            <div class="menu-grid">
+                
+                <div class="menu-card">
+                    <img src="dabeli-featured.jpg" alt="Regular Dabeli">
+                    <div class="menu-info">
+                        <h3>Regular Dabeli <span class="price">₹35</span></h3>
+                        <p>Normal dabeli cooked with oil and filled with our signature Kutchi masala.</p>
+                    </div>
+                </div>
+
+                <div class="menu-card">
+                    <img src="Dabeli-recipe.jpg" alt="Butter Dabeli">
+                    <div class="menu-info">
+                        <h3>Butter Dabeli <span class="price">₹40</span></h3>
+                        <p>Roasted with butter to perfection, providing a rich and savory flavor.</p>
+                    </div>
+                </div>
+
+                <div class="menu-card">
+                    <img src="dahi-puri-featured.jpg" alt="Dahi Puri">
+                    <div class="menu-info">
+                        <h3>Dahi Puri <span class="price">₹60</span></h3>
+                        <p>Crispy puris topped with savory fillings, tangy chutneys, sweet yogurt, and sev.</p>
+                    </div>
+                </div>
+
+                <div class="menu-card">
+                    <img src="images.jpg" alt="Bhel">
+                    <div class="menu-info">
+                        <h3>Bhel <span class="price">₹50</span></h3>
+                        <p>A light and crunchy chat made with puffed rice, mixed vegetables, peanuts, and flavorful spices.</p>
+                    </div>
+                </div>
+
+                <div class="menu-card">
+                    <img src="udsjvxvbjqbv5enclhp3.avif" alt="Kadak">
+                    <div class="menu-info">
+                        <h3>Kadak <span class="price">₹50</span></h3>
+                        <p>It is a toasted form of the bun and a chat is made using the masalas and sev and many more taste busters.</p>
+                    </div>
+                </div>
+
+                <div class="menu-card">
+                    <img src="241d6e388c08128195c2a72d94364fdf.jpg" alt="Tekha Mora">
+                    <div class="menu-info">
+                        <h3>Tekha Mora <span class="price">₹50</span></h3>
+                        <p>It is made using gathiya and the tasty masalas for the taste and it is made in the chat form.</p>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+   <!-- Brand Section with HTML Image Tag -->
+<section id="brand" class="brand-section">
+    <div class="brand-image-wrapper">
+        <img src="WhatsApp Image 2026-08-11 at 14.07.19.jpeg" alt="Shree Sahjanand Dabeli Banner">
+    </div>
+    <div class="brand-text">
+        <h2 class="section-header">Our Brand</h2>
+        <p>Shree Sahjanand Dabeli is a Gujarati food brand dedicated to bringing the authentic taste of Gujarat to every bite. Our specialty is delicious, traditional Dabeli made with flavorful ingredients and authentic Gujarati-style preparation. With a passion for quality, taste, and traditional flavors, we aim to give our customers a memorable street-food experience that celebrates the rich food culture of Gujarat.</p>
+    </div>
+</section>
+
+        <!-- Social Buttons (Instagram + WhatsApp Side-by-Side) -->
+        <div class="social-link-container">
+            <a href="https://www.instagram.com/shree_sahjanand_dabeli_jdp?igsh=NmN0bm15ZXh5cWk4" class="btn instagram-btn" target="_blank">
+                <svg class="icon-svg" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.919-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+                </svg>
+                Follow on Instagram
+            </a>
+
+            <a href="https://wa.me/918770409138?text=Hi,%20I%20would%20like%20to%20place%20an%20order!" class="btn whatsapp-btn" target="_blank">
+                💬 Order via WhatsApp
+            </a>
+        </div>
+
+        <!-- FAQ Section (2 visible initially) -->
+        <section id="faq" class="faq-section">
+            <h2 class="section-header">Frequently Asked Questions</h2>
+            <div class="faq-grid">
+                
+                <div class="faq-item">
+                    <h4>What is Dabeli?</h4>
+                    <p>Dabeli is a popular Gujarati street food made with a spiced potato filling, chutneys, peanuts, and flavorful masala served inside a bun.</p>
+                </div>
+
+                <div class="faq-item">
+                    <h4>What makes Shree Sahjanand Dabeli special?</h4>
+                    <p>We focus on authentic Gujarati flavors, traditional preparation, and delicious ingredients to give you a genuine taste of Gujarat.</p>
+                </div>
+
+                <div class="faq-item hidden">
+                    <h4>Do you offer different types of Dabeli?</h4>
+                    <p>Yes! We offer different varieties of Dabeli, including options for cheese lovers and those looking for an extra-special treat.</p>
+                </div>
+
+                <div class="faq-item hidden">
+                    <h4>Is the Dabeli spicy?</h4>
+                    <p>Our Dabeli has a flavorful Gujarati-style spice level. You can ask us for a milder or spicier preparation.</p>
+                </div>
+
+                <div class="faq-item hidden">
+                    <h4>Do you offer Jain options?</h4>
+                    <p>Yes, Jain options can be available. Please confirm with us while ordering.</p>
+                </div>
+
+                <div class="faq-item hidden">
+                    <h4>Do you serve other items besides Dabeli?</h4>
+                    <p>Yes, we also serve popular Indian street-food items such as Bhel, Dahi Puri, Sev Puri, and more.</p>
+                </div>
+
+                <div class="faq-item hidden">
+                    <h4>Can I place an order for a large group or event?</h4>
+                    <p>Yes! For bulk or event orders, please contact us in advance so we can prepare your order accordingly.</p>
+                </div>
+
+                <div class="faq-item hidden">
+                    <h4>How can I contact Shree Sahjanand Dabeli?</h4>
+                    <p>You can contact us through our phone number or social media page for orders, enquiries, and other information.</p>
+                </div>
+
+                <div class="faq-item hidden">
+                    <h4>Where can I follow you online?</h4>
+                    <p>Follow us on Instagram for updates, new offerings, and delicious food pictures.</p>
+                </div>
+
+                <div class="faq-item hidden">
+                    <h4>Do you provide takeaway?</h4>
+                    <p>Yes, takeaway orders are available</p>
+                </div>
+
+                <div class="faq-item hidden">
+                    <h4>Can we order food from the website?</h4>
+                    <p>No, currently we do not have that option but we are working on it.</p>
+                </div>
+
+                <div class="faq-item hidden">
+                    <h4>Do you deliver to our door step?</h4>
+                    <p>No, currently we do not have that option but we are working on it.</p>
+                </div>
+
+            </div>
+
+            <div class="faq-toggle-container">
+                <button class="view-all-btn" onclick="toggleFAQs()">View All FAQs</button>
+            </div>
+        </section>
+
+        <!-- Timings & Contact -->
+        <section class="info-section">
+            <div class="info-box">
+                <h3>📍 Find Us Here</h3>
+                <p><strong>Address:</strong> Shop No. 3, In front of Punjab National Bank, Chowparty, Jagdalpur, Chhattisgarh 494001</p>
+                <a href="https://maps.app.goo.gl/K3MkpkdWfyFNEtxr6" target="_blank" class="link-text">🗺️ Open in Google Maps ➔</a>
+            </div>
+            <div class="info-box">
+                <h3>⏰ Timings & Contact</h3>
+                <p><strong>Everyday:</strong> 3:00 PM – 11:00 PM</p>
+                <p style="margin-top: 10px;"><strong>Phone / WhatsApp:</strong> 8770409138</p>
+                <a href="tel:+918770409138" class="link-text">📞 Call Now</a>
+            </div>
+        </section>
+    </div>
+
+    <footer>
+        <p>&copy; 2026 Shree Sahjanand Dabeli. All rights reserved.</p>
+        <p style="margin-top: 10px;"><a href="review.html" style="color:#ff9f43; text-decoration:none;">Leave a Review Here</a></p>
+    </footer>
+
+    <script>
+        function toggleTheme() {
+            const currentTheme = document.documentElement.getAttribute('data-theme');
+            const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+            document.documentElement.setAttribute('data-theme', newTheme);
+            
+            const btn = document.querySelector('.theme-toggle');
+            btn.textContent = newTheme === 'dark' ? '☀️ Light Mode' : '🌙 Dark Mode';
+        }
+
+        function toggleFAQs() {
+            const hiddenFAQs = document.querySelectorAll('.faq-item.hidden, .faq-item.shown');
+            const toggleBtn = document.querySelector('.view-all-btn');
+            
+            let isExpanded = toggleBtn.getAttribute('data-expanded') === 'true';
+
+            if (!isExpanded) {
+                hiddenFAQs.forEach(item => {
+                    item.classList.remove('hidden');
+                    item.classList.add('shown');
+                });
+                toggleBtn.textContent = 'Show Less';
+                toggleBtn.setAttribute('data-expanded', 'true');
+            } else {
+                const faqs = document.querySelectorAll('.faq-item');
+                faqs.forEach((item, index) => {
+                    if (index >= 2) {
+                        item.classList.add('hidden');
+                        item.classList.remove('shown');
+                    }
+                });
+                toggleBtn.textContent = 'View All FAQs';
+                toggleBtn.setAttribute('data-expanded', 'false');
+            }
+        }
+    </script>
+</body>
+</html>
