@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SHREE SAHJANAND DABELI | The Real Taste of Kutch</title>
+    <style>
+        :root {
+            --bg-color: #fdfaf6;
+            --text-color: #333;
+            --card-bg: white;
+            --card-shadow: rgba(0,0,0,0.08);
+            --header-text: #2d3436;
+            --secondary-text: #636e72;
+            --footer-bg: #2d3436;
+            --main-blue: #0047AB;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            line-height: 1.6;
+        }
+
+        header {
+            background-color: var(--main-blue);
+            color: white;
+            padding: 80px 20px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        header h1 {
+            font-size: 3rem;
+            color: white;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            position: relative;
+            z-index: 2;
+            margin-bottom: 20px;
+        }
+
+        .background-logo {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            opacity: 0.15;
+            max-width: 300px;
+            width: 100%;
+            height: auto;
+            z-index: 1;
+        }
+
+        header p {
+            font-size: 1.2rem;
+            margin-bottom: 30px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .btn-container {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            flex-wrap: wrap;
+            position: relative;
+            z-index: 2;
+        }
+
+        .btn {
+            padding: 12px 25px;
+            text-decoration: none;
+            font-weight: bold;
+            border-radius: 25px;
+            transition: 0.3s;
+        }
+
+        .cta-btn { background-color: #ff6b6b; color: white; }
+        .cta-btn:hover { background-color: #ee5253; }
+        
+        .whatsapp-btn { background-color: #25D366; color: white; }
+        .whatsapp-btn:hover { background-color: #1eb954; }
+
+        .review-btn-header { background-color: white; color: var(--main-blue); border: 2px solid white; }
+        .review-btn-header:hover { background-color: rgba(255, 255, 255, 0.8); }
+
+        .container {
+            max-width: 1100px;
+            margin: 60px auto;
+            padding: 0 20px;
+        }
+
+        h2 {
+            text-align: center;
+            color: var(--header-text);
+            margin-bottom: 50px;
+            font-size: 2.5rem;
+            position: relative;
+        }
+
+        h2::after {
+            content: '';
+            width: 80px;
+            height: 4px;
+            background-color: #ff9f43;
+            display: block;
+            margin: 10px auto 0;
+            border-radius: 2px;
+        }
+
+        .menu-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 30px;
+        }
+
+        .menu-card {
+            background: var(--card-bg);
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 6px 18px var(--card-shadow);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .menu-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px var(--card-shadow);
+        }
+
+        .menu-card img {
+            width: 100%;
+            height: 220px;
+            object-fit: cover;
+        }
+
+        .menu-info {
+            padding: 25px;
+        }
+
+        .menu-info h3 {
+            display: flex;
+            justify-content: space-between;
+            color: var(--header-text);
+            font-size: 1.4rem;
+            margin-bottom: 10px;
+        }
+
+        .price {
+            color: #ff6b6b;
+            font-weight: bold;
+        }
+
+        .menu-info p {
+            color: var(--secondary-text);
+            font-size: 1rem;
+        }
+
+        .info-section {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 30px;
+            margin-top: 80px;
+            background: var(--card-bg);
+            padding: 50px;
+            border-radius: 12px;
+            box-shadow: 0 6px 18px var(--card-shadow);
+        }
+
+        .info-box {
+            flex: 1;
+            min-width: 280px;
+        }
+
+        .info-box h3 {
+            color: #ff9f43;
+            margin-bottom: 20px;
+        }
+
+        .link-text {
+            display: inline-block;
+            margin-top: 10px;
+            color: #ff6b6b;
+            font-weight: bold;
+            text-decoration: none;
+        }
+        .link-text:hover { text-decoration: underline; }
+
+        footer {
+            text-align: center;
+            background-color: var(--footer-bg);
+            color: white;
+            padding: 40px 20px;
+            margin-top: 60px;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <!-- Logo Image mapped to your logo file -->
+        <img src="WhatsApp Image 2026-08-04 at 23.24.33.jpeg" alt="Shree Sahjanand Dabeli Logo" class="background-logo">
+
+        <h1>SHREE SAHJANAND DABELI</h1>
+        <p>Authentic Street Snacks in Jagdalpur, Chhattisgarh</p>
+        <div class="btn-container">
+            <a href="#menu" class="btn cta-btn">Explore Menu</a>
+            <a href="https://wa.me/918770409138?text=Hi,%20I%20would%20like%20to%20place%20an%20order!" class="btn whatsapp-btn" target="_blank">💬 Order via WhatsApp</a>
+            <a href="review.html" class="btn review-btn-header">⭐ Leave a Review</a>
+        </div>
+    </header>
+
+    <div class="container">
+        <section id="menu">
+            <h2>Our Specialties</h2>
+            <div class="menu-grid">
+                
+                <!-- 1. Regular Dabeli -->
+                <div class="menu-card">
+                    <img src="dabeli-featured.jpg" alt="Regular Dabeli">
+                    <div class="menu-info">
+                        <h3>Regular Dabeli <span class="price">₹35</span></h3>
+                        <p>Normal dabeli cooked with oil and filled with our signature Kutchi masala.</p>
+                    </div>
+                </div>
+
+                <!-- 2. Butter Dabeli -->
+                <div class="menu-card">
+                    <img src="Dabeli-recipe.jpg" alt="Butter Dabeli">
+                    <div class="menu-info">
+                        <h3>Butter Dabeli <span class="price">₹40</span></h3>
+                        <p>Roasted with butter to perfection, providing a rich and savory flavor.</p>
+                    </div>
+                </div>
+
+                <!-- 3. Dahi Puri -->
+                <div class="menu-card">
+                    <img src="dahi-puri-featured.jpg" alt="Dahi Puri">
+                    <div class="menu-info">
+                        <h3>Dahi Puri <span class="price">₹60</span></h3>
+                        <p>Crispy puris topped with savory fillings, tangy chutneys, sweet yogurt, and sev.</p>
+                    </div>
+                </div>
+
+                <!-- 4. Bhel -->
+                <div class="menu-card">
+                    <img src="images.jpg" alt="Bhel">
+                    <div class="menu-info">
+                        <h3>Bhel <span class="price">₹50</span></h3>
+                        <p>A light and crunchy chat made with puffed rice, mixed vegetables, peanuts, and flavorful spices.</p>
+                    </div>
+                </div>
+
+                <!-- 5. Kadak -->
+                <div class="menu-card">
+                    <img src="udsjvxvbjqbv5enclhp3.avif" alt="Kadak">
+                    <div class="menu-info">
+                        <h3>Kadak <span class="price">₹50</span></h3>
+                        <p>It is a toasted form of the bun and a chat is made using the masalas and sev and many more taste busters.</p>
+                    </div>
+                </div>
+
+                <!-- 6. Tekha Mora -->
+                <div class="menu-card">
+                    <img src="241d6e388c08128195c2a72d94364fdf.jpg" alt="Tekha Mora">
+                    <div class="menu-info">
+                        <h3>Tekha Mora <span class="price">₹50</span></h3>
+                        <p>It is made using gathiya and the tasty masalas for the taste and it is made in the chat form.</p>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <section class="info-section">
+            <div class="info-box">
+                <h3>📍 Find Us Here</h3>
+                <p><strong>Address:</strong> Shop No. 3, In front of Punjab National Bank, Chowparty, Jagdalpur, Chhattisgarh 494001</p>
+                <a href="https://maps.app.goo.gl/K3MkpkdWfyFNEtxr6" target="_blank" class="link-text">🗺️ Open in Google Maps ➔</a>
+            </div>
+            <div class="info-box">
+                <h3>⏰ Timings & Contact</h3>
+                <p><strong>Everyday:</strong> 3:00 PM – 11:00 PM</p>
+                <p style="margin-top: 10px;"><strong>Phone / WhatsApp:</strong> 8770409138</p>
+                <a href="tel:+918770409138" class="link-text">📞 Call Now</a>
+            </div>
+        </section>
+    </div>
+
+    <footer>
+        <p>&copy; 2026 Shree Sahjanand Dabeli. All rights reserved.</p>
+        <p style="margin-top: 10px;"><a href="review.html" style="color:#ff9f43; text-decoration:none;">Leave a Review Here</a></p>
+    </footer>
+
+</body>
+</html>
